@@ -17,6 +17,19 @@ Analyze the daily profile and plot a map with a color for each usage pattern.
 * [Notebook for usage pattern in Bordeaux](./Clustering-Bordeaux.ipynb)
 * [Notebook for usage pattern in Lyon](./Clustering-Lyon.ipynb)
 
+## Example of pattern
+
+You can see the percentage of available bikes for 4 different daily
+profiles. Note the analysis only keep job days.
+
+* Blue profile: people who take bikes in the morning, roll them into 'green'
+  stations and go back home in the evening.
+* Green profile: opposite of the blue profile.
+* Orange profile: not very used stations. Sometimes too far from city
+  center. Sometimes very close the tramway stations.
+* Red profile: stations where people go in the evening
+
+![Bordeaux-Pattern](./images/bordeaux-pattern.png)
 
 ## Maps
 
