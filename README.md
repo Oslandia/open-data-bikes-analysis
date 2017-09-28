@@ -15,12 +15,18 @@ article and his great [notebook](https://github.com/jameslawlor/dublin-bikes-tim
 Analyze the daily profile and plot a map with a color for each usage pattern.
 
 * [Notebook for usage pattern in Bordeaux](./Clustering-Bordeaux.ipynb)
+* [Notebook for usage pattern in Lyon](./Clustering-Lyon.ipynb)
+
 
 ## Maps
 
 ### Bordeaux Map Clustering
 
 ![Bordeaux-Map](./images/bordeaux-map-clustering.jpg)
+
+### Lyon Map Clustering
+
+![Lyon-Map](./images/lyon-map-clustering.jpg)
 
 ## Predict (draft)
 
