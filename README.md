@@ -14,6 +14,14 @@ article and his great [notebook](https://github.com/jameslawlor/dublin-bikes-tim
 
 Analyze the daily profile and plot a map with a color for each usage pattern.
 
+* [Pattern usage in Bordeaux](./Clustering-Bordeaux.ipynb)
+
+## Maps
+
+### Bordeaux Map Clustering
+
+![Bordeaux-Map](./images/bordeaux-map-clustering.jpg)
+
 ## Predict (draft)
 
 Play with some different models to predict the number of available bikes (or a
