@@ -163,11 +163,10 @@ def prepare_data_for_training(df, date, freq='1H', start=None, periods=1,
         result[observation] = result[observation].replace({"low": 0, "medium": 1, "high": 2})
         result['future'] = result['future'].replace({"low": 0, "medium": 1, "high": 2})
     result.reset_index(level=1, inplace=True)
-    freq = freq.replace("T", "m")
     if start is not None:
         result = result[result.index >= start]
-    cut = date - pd.Timedelta(freq)
-    stop = date + periods * pd.Timedelta(freq)
+    cut = date - pd.Timedelta(freq.replace('T', 'm'))
+    stop = date + periods * pd.Timedelta(freq.replace('T', 'm'))
     logger.info("cut date %s", cut)
     logger.info("stop date %s", stop)
     logger.info("split train and test according to a prediction date")
@@ -175,7 +174,7 @@ def prepare_data_for_training(df, date, freq='1H', start=None, periods=1,
     train_X = train.drop([observation, "future"], axis=1)
     train_Y = train['future'].copy()
     # time window
-    mask = np.logical_and(result.index > date, result.index <= stop)
+    mask = np.logical_and(result.index >= date, result.index <= stop)
     test = result[mask].copy()
     test_X = test.drop([observation, "future"], axis=1)
     test_Y = test['future'].copy()
@@ -200,7 +199,7 @@ def fit(train_X, train_Y, test_X, test_Y):
     xg_train = xgb.DMatrix(train_X, label=train_Y)
     xg_test = xgb.DMatrix(test_X, label=test_Y)
     watchlist = [(xg_train, 'train'), (xg_test, 'test')]
-    num_round = 10
+    num_round = 25
     bst = xgb.train(param, xg_train, num_round, watchlist)
     return bst
 
@@ -238,9 +237,11 @@ if __name__ == '__main__':
     start = pd.Timestamp("2017-07-11") # Tuesday
     # predict_date = pd.Timestamp("2017-07-26T19:30:00") # wednesday
     predict_date = pd.Timestamp("2017-07-26T10:00:00") # wednesday
+    # predict the further 30 minutes
+    freq = '30T'
     train_X, train_Y, test_X, test_Y = prepare_data_for_training(df,
                                                                  predict_date,
-                                                                 freq='30T',
+                                                                 freq=freq,
                                                                  start=start,
                                                                  periods=2,
                                                                  observation='probability')
@@ -252,3 +253,16 @@ if __name__ == '__main__':
     pred = prediction(bst, test_X, test_Y)
     rmse = np.sqrt(np.mean((pred - test_Y)**2))
     print("RMSE: {}".format(rmse))
+
+    # put observation and prediction in a 'test' DataFrame
+    test = test_X.copy()
+    #obs = test_Y.to_frame()
+    obs['ts_future'] = test_Y.index.shift(1, freq=freq)
+
+    test['observation'] = test_Y.copy()
+    test['ts_future'] = test_Y.index.shift(1, freq=freq)
+    test['prediction'] = pred
+    test['error'] = pred - test_Y
+    test['relative_error'] = 100. * np.abs(pred - test_Y) / test_Y
+    test['quad_error'] = (pred - test_Y)**2
+    test.to_csv("prediction-freq-{}-{}.csv".format(freq, predict_date))
