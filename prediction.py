@@ -219,7 +219,7 @@ def error_rate(bst, test_X, test_Y):
 
 
 if __name__ == '__main__':
-    DATAFILE = "./lyon.csv"
+    DATAFILE = "./data/lyon.csv"
     THRESHOLD = 3
 
     raw = datareader(DATAFILE)
