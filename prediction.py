@@ -257,7 +257,7 @@ if __name__ == '__main__':
     # put observation and prediction in a 'test' DataFrame
     test = test_X.copy()
     #obs = test_Y.to_frame()
-    obs['ts_future'] = test_Y.index.shift(1, freq=freq)
+    test['ts_future'] = test_Y.index.shift(1, freq=freq)
 
     test['observation'] = test_Y.copy()
     test['ts_future'] = test_Y.index.shift(1, freq=freq)
