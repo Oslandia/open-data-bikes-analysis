@@ -15,10 +15,6 @@ from sklearn.model_selection import train_test_split
 
 import xgboost as xgb
 
-from matplotlib import pyplot as plt
-import seaborn as sns
-sns.set_context('talk')
-
 
 SEED = 1337
 np.random.seed(SEED)
