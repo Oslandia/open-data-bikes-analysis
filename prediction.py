@@ -188,14 +188,15 @@ def fit(train_X, train_Y, test_X, test_Y):
     Return the booster trained model
     """
     logger.info("fit")
-    # param = {'objective': 'multi:softmax'}
     # param = {'objective': 'reg:linear'}
     param = {'objective': 'reg:logistic'}
     param['eta'] = 0.2
     param['max_depth'] = 6
     param['silent'] = 1
-    param['nthread'] = 2
-    param['num_class'] = train_Y.nunique()
+    param['nthread'] = 4
+    # used num_class only for classification (e.g. a level of availability)
+    # param = {'objective': 'multi:softmax'}
+    # param['num_class'] = train_Y.nunique()
     xg_train = xgb.DMatrix(train_X, label=train_Y)
     xg_test = xgb.DMatrix(test_X, label=test_Y)
     watchlist = [(xg_train, 'train'), (xg_test, 'test')]
@@ -246,6 +247,8 @@ if __name__ == '__main__':
     # train_X, train_Y, test_X, test_Y = prepare_data_for_training(df, predict_date, freq='1H', start=start, periods=2)
 
     bst = fit(train_X, train_Y, test_X, test_Y)
-    err = error_rate(bst, test_X, test_Y)
-    print("Error rate: {}".format(err))
+    # err = error_rate(bst, test_X, test_Y)
+    # print("Error rate: {}".format(err))
     pred = prediction(bst, test_X, test_Y)
+    rmse = np.sqrt(np.mean((pred - test_Y)**2))
+    print("RMSE: {}".format(rmse))
