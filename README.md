@@ -46,6 +46,22 @@ profiles. Note the analysis only keep job days.
 Play with some different models to predict the number of available bikes (or a
 kind of availability).
 
+* See the script `prediction.py` which uses
+  [XGBoost](http://xgboost.readthedocs.io/en/latest/model.html) to predict the
+  bicycle-station availability
+* [Notebook for prediction in Lyon](./Prediction-Lyon.ipynb)
+
+### Prediction Map
+
+From history data (two weeks), prediction at T+30 minutes for every station in
+Lyon (France).
+
+* Blue means there are several available bikes
+* Red means there are just a few available bikes
+
+![Lyon-Prediction-Map](./images/lyon-prediction-map.jpg)
+
+
 ## Data
 
 * [Data Grand Lyon Website](https://data.grandlyon.com/equipements/station-vflov-disponibilitfs-temps-rfel/)
