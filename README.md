@@ -1,10 +1,14 @@
 # Open Data Bikes Analysis
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Analyze bikes sharing station data from Bordeaux and Lyon Open Data (French
 cities).
 
 Use the Python 3 programming language in Jupyter notebooks and the following
 libraries: pandas, numpy, seaborn, matplotlib, scikit-learn, xgboost.
+
+See the [requirements.txt](./requirements.txt) file for the dependencies.
 
 ## Clustering
 
