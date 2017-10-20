@@ -8,7 +8,9 @@ cities).
 Use the Python 3 programming language in Jupyter notebooks and the following
 libraries: pandas, numpy, seaborn, matplotlib, scikit-learn, xgboost.
 
-See the [requirements.txt](./requirements.txt) file for the dependencies.
+See the [requirements.txt](./requirements.txt) file for the dependencies. If you
+use conda and the conda environnement, you can just do: `conda env create -f
+environment.yml` and the `source activate bikes`.
 
 ## Clustering
 
