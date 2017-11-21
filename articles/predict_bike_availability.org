@@ -3,8 +3,8 @@
 
 In a [[http://oslandia.com/en/?p=3942&preview=true][previous article]], we described the clustering of bike sharing stations in
 two french cities, /i.e./ Bordeaux and Lyon. We saw that geospatial clustering
-is interesting to understand the city organization, the results were especially
-impressive for Lyon data set.
+is interesting to understand city organization. Results were especially
+impressive for the Lyon data set.
 
 Here we propose to continue the effort about bike sharing system description by
 attempting to predict the bike availability rates for each station in Lyon.
@@ -37,7 +37,7 @@ lyon.sample(5)
 : 5748741     8008 2017-09-08 19:16:41       3     10   Non
 : 3372882     6020 2017-08-16 01:29:05       2     13   Non
 
-We can preprocess a little bit more these data so as to extract timestamp
+We preprocess a little bit more these data so as to extract timestamp
 features and the probability to find a bike at each period of the day. Here
 data is resampled to 10-minute periods, and the amount of available bikes is
 averaged regarding records gathered during each period.
@@ -57,18 +57,18 @@ lyon.head(5)
 
 This is the final data set that we will give to the predictive model. To
 improve the quality of predictions, other types of data could be integrated to
-this framework, /i.e./ weather forecasts (however we let it for a further study).
+this framework, /e.g./ weather forecasts (however we let it for a further study).
 
 * Predicting shared bike availability
 
 The first practical question to answer here is the prediction horizon. Here we
 will attempt to predict the bike availability after 30 minutes. It could be a
-typical problem for a user who wants to plan a local trip: will he find some
-bike at his prefered station, or should he walk to the next one? Or maybe
-should he look for an alternative transportation mode, as there is no bike in
-the near neighborhood?
+typical problem for a user who wants to plan a local trip: will he find a
+bike at his preferred station, or should he walk to the next one? Or maybe
+should he look for an alternative transportation mode, as there will be no bike in
+the neighborhood nearby?
 
-Let use two weeks of data for training (/i.e./ from 11/07/11 to 25/07/11) so as
+Let's use two weeks of data for training (/i.e./ from 11/07/11 to 25/07/11) so as
 to predict one day of availability on the network (/i.e./ 26/07/11). The
 explicative variables will be the station id, the timestamp information (day
 id, hours, minutes) and the station-related features (numbers of available
@@ -76,11 +76,11 @@ bikes and stands).
 
 To do the hard prediction job, we use [[https://github.com/dmlc/xgboost][XGBoost]] (see doc [[http://xgboost.readthedocs.io/en/latest/][here]]), a distributed
 gradient boosting method that can undertake classification as well as
-regression processes. Here we are in the second case, as we want to estimate
+regression processes. Here, we are in the second case, as we want to estimate
 the value of a quantitative variable (the probability of finding an available
 bike at a given station, at a given hour).
 
-Our model learns quite fastly, and after 25 iterations, the training process
+Our model learns quite fast, and after 25 iterations, the training process
 converges around a satisfying error value (around 0.095).
 
 #+CAPTION: XGBoost training curves
@@ -89,11 +89,11 @@ converges around a satisfying error value (around 0.095).
 
 * Mapping the predictions
 
-In the last article, we have plotted the shared bike stations according to
-their cluster. Here we are in a regression problem, we are more focused on the
+In the last article, we plotted the shared bike stations according to
+their clusters. Here, we are in a regression problem, we are more focused on the
 level of bike availability, seen as a percentage.
 
-The following map shows such a quantity, for all Lyon stations:
+The following map shows such a quantity, for all stations in Lyon:
 
 #+CAPTION: True shared bike availability, per station (red: empty station, blue: full station)
 #+NAME: fig:lyon_ground_truth_availability
@@ -116,10 +116,10 @@ model failed to give an accurate prediction:
 The wrong predictions are sparsely located, with the exception of three
 stations on the west of the city. These points are on the Fourvière hill, a
 very hard place to ride with bikes! As if the model were really unconfident
-regarding people ability to climb up until these stations...
+regarding people's ability to climb up to these stations...
 
 
 
 You may find the code and some notebooks related to this topic on [[https://github.com/Oslandia/open-data-bikes-analysis][Github]]. If
 you want to discuss about that with us, or if you have some needs on similar
-problems, please contact us!
+problems, please contact us : infos+data@oslandia.com !
