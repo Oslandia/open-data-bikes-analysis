@@ -4,7 +4,7 @@
 [[http://oslandia.com/][Oslandia]] team is involved in a constant effort in geospatial data gathering and
 analysis. By taking advantage of the recent trend in public open data
 releasing, and after reading an inspiring work done by James Lawlor for [[https://towardsdatascience.com/usage-patterns-of-dublin-bikes-stations-484bdd9c5b9e][Dublin
-data]], we decide to evaluate the situation in our own living places. Here come
+data]], we decided to evaluate the situation in our own living places. Here comes
 the open data portals for both cities: [[https://data.grandlyon.com/][Lyon]] and [[http://opendata.bordeaux.fr/][Bordeaux]].
 
 * What is the data looking like?
@@ -13,7 +13,7 @@ Both data set have been gathered with a cron plugged onto open data portals
 between the 8th of July and the 26th of September, /i.e./ more than 11 weeks of
 data.
 
-It is important to consider there is no real normalization relatively to bike
+It is important to consider there is no real standardization relatively to bike
 sharing open data sets: each city provide its own data set with its own
 features.
 
@@ -77,11 +77,11 @@ significance.
 As showed by figures below, the global pattern seems comparable between both
 cities:
 + a first cluster (red) groups stations where bikes have high availability
-  rates during the night, they probably refer to residential neighborhoods.
-+ a second cluster (green in Bordeaux, blue in Lyon) gathers stations near to
+  rates during the night. They probably refer to residential neighborhoods.
++ a second cluster (green in Bordeaux, blue in Lyon) gathers stations near 
   diurnal activities (job places, universities and so on...)
 + a third cluster (blue in Bordeaux, green in Lyon) refers to stations where
-  there are almost always a high proportion of available bikes, either they are
+  there are almost always a high proportion of available bikes. They are either
   in less visited places or other transportation mode do the job
 + a fourth and last group (purple) clusters stations where there are a lot of
   bikes during evenings, and fairly less during the remaining of the day,
@@ -97,7 +97,7 @@ cities:
 
 * Understand a city from its bike sharing stations
 
-That's quite good for a beginning, however what about the geographical part of
+This can be considered quite good for a beginning, however what about the geographical part of
 the data? [[https://github.com/python-visualization/folium][Folium]] (see doc [[https://folium.readthedocs.io/en/latest/][here]]), a Python library based on Leaflet.js, will
 allow us to draw interactive maps with our newly designed clusters.
 
@@ -107,32 +107,31 @@ allow us to draw interactive maps with our newly designed clusters.
 
 The situation of both example cities is quite diverging here, as illustrated by
 the previous maps. On the first hand, we can see that the Bordeaux spatial
-repartition is not so clear following the clustering process. Either the
-cluster process give unsignificant results, or the shared bike usage does not
+repartition is not that clear following the clustering process. Either the
+cluster process gives unsignificant results, or the shared bike usage does not
 fit the neighborhood division.
 
 #+CAPTION: Bike sharing stations in Lyon
 #+NAME: fig:lyon_map_4_clusters
 [[../image/lyon-4-clusters.png]]
 
-On the second hand, the result over Lyon are far more significant, in a
-geospatial point of view. Residential stations are mainly in Villeurbanne (on
-the east) and in the 8th district (south east). We get a high concentration of
+On the second hand, results in Lyon are far more significant, from a
+geospatial point of view. Residential stations are mainly in Villeurbanne (east of Lyon) 
+and in the 8th district (south east). We get a high concentration of
 blue stations (diurnal activities) in the 3rd district (Part-Dieu business
-area), or near to the La Doua campus (north). It is interesting to point out
-some blue points in the far south east of the city: they correspond to the big
-Lyon hospital. If we consider purple stations (evening activities), almost all
+area), or near La Doua campus (north). It is interesting to point out
+some blue points in the far south east of the city: they correspond to the largest
+hospital in Lyon. If we consider purple stations (evening activities), almost all
 the points are located in the city center (Croix-Rousse, Lyon peninsula and
-near riverbanks), in partying places.
+riverbanks nearby), in partying places.
 
-(... With all these elements, the true question is: where is located the Lyon
-Oslandia office?)
+(... With all these elements, the true question is: where is Oslandia's office located in Lyon ?)
 
 
 
 In a next article, we will provide an extension of this work by predicting bike
 availability at stations.
 
-If you are interested in continuing the discussion with us on this, or on
-another data-related topic, do not hesitate to mail us! You may also find the
+If you are interested in continuing the discussion with us on this matter, or on
+another data-related topic, do not hesitate to mail us ( infos+data@oslandia.com ) ! You may also find the
 Python code for this project on [[https://github.com/Oslandia/open-data-bikes-analysis][Github]].
