@@ -9,6 +9,10 @@ the open data portals for both cities: [[https://data.grandlyon.com/][Lyon]] and
 
 * What is the data looking like?
 
+Both data set have been gathered with a cron plugged onto open data portals
+between the 8th of July and the 26th of September, /i.e./ more than 11 weeks of
+data.
+
 It is important to consider there is no real normalization relatively to bike
 sharing open data sets: each city provide its own data set with its own
 features.
