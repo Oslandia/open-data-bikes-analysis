@@ -120,6 +120,9 @@ regarding people's ability to climb up to these stations...
 
 
 
-You may find the code and some notebooks related to this topic on [[https://github.com/Oslandia/open-data-bikes-analysis][Github]]. If
-you want to discuss about that with us, or if you have some needs on similar
-problems, please contact us : infos+data@oslandia.com !
+You may find the code and some notebooks related to this topic on [[https://github.com/Oslandia/open-data-bikes-analysis][Github]]. We
+also thank Armand Gilles ([[https://twitter.com/arm_gilles][@arm_gilles]]) for his contribution to the project,
+through his [[https://github.com/armgilles/open-data-bikes-analysis][soon-merged fork]].
+
+If you want to discuss about that with us, or if you have some needs on similar
+problems, please contact us : [[infos+data@oslandia.com][infos+data@oslandia.com]] !
