@@ -4,7 +4,7 @@
 [[http://oslandia.com/][Oslandia]] team is involved in a constant effort in geospatial data gathering and
 analysis. By taking advantage of the recent trend in public open data
 releasing, and after reading an inspiring work done by James Lawlor for [[https://towardsdatascience.com/usage-patterns-of-dublin-bikes-stations-484bdd9c5b9e][Dublin
-data]], we decided to evaluate the situation in our own living places. Here comes
+data]], we decided to evaluate the situation in our own living places. Here come
 the open data portals for both cities: [[https://data.grandlyon.com/][Lyon]] and [[http://opendata.bordeaux.fr/][Bordeaux]].
 
 * What is the data looking like?
@@ -14,7 +14,7 @@ get data every 5 minutes. The data of this study are between the 8th of July and
 the 26th of September, /i.e./ more than 11 weeks of data.
 
 It is important to consider there is no real standardization relatively to bike
-sharing open data sets: each city provide its own data set with its own
+sharing open data sets: each city provides its own data set with its own
 features.
 
 Around Lyon the data set is as follows:
@@ -74,7 +74,7 @@ for a given hour of the day).
 We have worked with four clusters, regarding elbow method as well as cluster
 significance.
 
-As showed by figures below, the global pattern seems comparable between both
+As shown by figures below, the global pattern seems comparable between both
 cities:
 + a first cluster (red) groups stations where bikes have high availability
   rates during the night. They probably refer to residential neighborhoods.
@@ -108,7 +108,7 @@ allow us to draw interactive maps with our newly designed clusters.
 The situation of both example cities is quite diverging here, as illustrated by
 the previous maps. On the first hand, we can see that the Bordeaux spatial
 repartition is not that clear following the clustering process. Either the
-cluster process gives unsignificant results, or the shared bike usage does not
+cluster process gives insignificant results, or the shared bike usage does not
 fit the neighborhood division.
 
 #+CAPTION: Bike sharing stations in Lyon
