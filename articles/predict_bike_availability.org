@@ -1,0 +1,125 @@
+#+TITLE: Predict bike availability at bike sharing stations
+#+AUTHOR: Damien Garaud <damien.garaud@oslandia.com>, Raphaël Delhome <raphael.delhome@oslandia.com>
+
+In a [[http://oslandia.com/en/?p=3942&preview=true][previous article]], we described the clustering of bike sharing stations in
+two french cities, /i.e./ Bordeaux and Lyon. We saw that geospatial clustering
+is interesting to understand city organization. Results were especially
+impressive for the Lyon data set.
+
+Here we propose to continue the effort about bike sharing system description by
+attempting to predict the bike availability rates for each station in Lyon.
+
+* Collecting the data
+
+As in the previous article we can use almost two months and a half of recordings at
+every bike sharing stations in Lyon, between 17/07/08 and 17/09/26.
+
+By simplifying our data, we can see that we get timestamped bike availability
+data at each station.
+
+#+BEGIN_SRC ipython :session openbike_pred :exports none
+import sources.prediction as pred
+import pandas as pd
+
+raw = pd.read_csv("../data/lyon.csv", parse_dates=["last_update"])
+#+END_SRC
+
+#+BEGIN_SRC ipython :session openbike_pred :exports results
+lyon = pred.cleanup(raw)
+lyon.sample(5)
+#+END_SRC
+
+#+RESULTS:
+:          station                  ts  stands  bikes bonus
+: 5466310     2002 2017-09-05 23:24:54      18      2   Non
+: 6245383     5015 2017-09-13 18:32:57       5     14   Non
+: 7074115    11003 2017-09-22 02:49:36       2     18   Non
+: 5748741     8008 2017-09-08 19:16:41       3     10   Non
+: 3372882     6020 2017-08-16 01:29:05       2     13   Non
+
+We preprocess a little bit more these data so as to extract timestamp
+features and the probability to find a bike at each period of the day. Here
+data is resampled to 10-minute periods, and the amount of available bikes is
+averaged regarding records gathered during each period.
+
+#+BEGIN_SRC ipython :session openbike_pred :exports results
+lyon = lyon.pipe(pred.time_resampling).pipe(pred.complete_data).pipe(pred.bikes_probability)
+lyon.head(5)
+#+END_SRC
+
+#+RESULTS:
+:    station                  ts  bikes  stands  day  hour  minute  probability
+: 0     1001 2017-07-09 00:00:00   15.0     1.0    6     0       0      0.93750
+: 1     1001 2017-07-09 00:10:00   15.0     1.0    6     0       0      0.93750
+: 2     1001 2017-07-09 00:20:00   14.5     1.5    6     0      10      0.90625
+: 3     1001 2017-07-09 00:30:00   14.5     1.5    6     0      20      0.90625
+: 4     1001 2017-07-09 00:40:00   11.5     4.5    6     0      30      0.71875
+
+This is the final data set that we will give to the predictive model. To
+improve the quality of predictions, other types of data could be integrated to
+this framework, /e.g./ weather forecasts (however we let it for a further study).
+
+* Predicting shared bike availability
+
+The first practical question to answer here is the prediction horizon. Here we
+will attempt to predict the bike availability after 30 minutes. It could be a
+typical problem for a user who wants to plan a local trip: will he find a
+bike at his preferred station, or should he walk to the next one? Or maybe
+should he look for an alternative transportation mode, as there will be no bike in
+the neighborhood nearby?
+
+Let's use two weeks of data for training (/i.e./ from 11/07/11 to 25/07/11) so as
+to predict one day of availability on the network (/i.e./ 26/07/11). The
+explicative variables will be the station id, the timestamp information (day
+id, hours, minutes) and the station-related features (numbers of available
+bikes and stands).
+
+To do the hard prediction job, we use [[https://github.com/dmlc/xgboost][XGBoost]] (see doc [[http://xgboost.readthedocs.io/en/latest/][here]]), a distributed
+gradient boosting method that can undertake classification as well as
+regression processes. Here, we are in the second case, as we want to estimate
+the value of a quantitative variable (the probability of finding an available
+bike at a given station, at a given hour).
+
+Our model learns quite fast, and after 25 iterations, the training process
+converges around a satisfying error value (around 0.095).
+
+#+CAPTION: XGBoost training curves
+#+NAME: fig:lyon_prediction_training_curves
+[[../image/lyon_prediction_training_curves.png]]
+
+* Mapping the predictions
+
+In the last article, we plotted the shared bike stations according to
+their clusters. Here, we are in a regression problem, we are more focused on the
+level of bike availability, seen as a percentage.
+
+The following map shows such a quantity, for all stations in Lyon:
+
+#+CAPTION: True shared bike availability, per station (red: empty station, blue: full station)
+#+NAME: fig:lyon_ground_truth_availability
+[[../image/lyon_groundtruth.png]]
+
+We have to compare it with the prediction provided by XGBoost model below. With
+such a color scale, we can say that the prediction looks good:
+
+#+CAPTION: Predictions on shared bike availability, per station (red: empty station, blue: full station)
+#+NAME: fig:lyon_predicted_availability
+[[../image/lyon_prediction.png]]
+
+If we focus on the prediction error, we may highlight bike stations where the
+model failed to give an accurate prediction:
+
+#+CAPTION: Prediction error (RMSE), per station (red: less bike than ground truth, blue: more bike than ground truth)
+#+NAME: fig:lyon_prediction_error
+[[../image/lyon_prediction_error.png]]
+
+The wrong predictions are sparsely located, with the exception of three
+stations on the west of the city. These points are on the Fourvière hill, a
+very hard place to ride with bikes! As if the model were really unconfident
+regarding people's ability to climb up to these stations...
+
+
+
+You may find the code and some notebooks related to this topic on [[https://github.com/Oslandia/open-data-bikes-analysis][Github]]. If
+you want to discuss about that with us, or if you have some needs on similar
+problems, please contact us : infos+data@oslandia.com !

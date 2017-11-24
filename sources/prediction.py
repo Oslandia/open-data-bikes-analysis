@@ -4,15 +4,13 @@
 Bikes availability prediction (i.e. probability) using xgboost.
 """
 
-
 import logging
-import daiquiri
 
+import daiquiri
 import numpy as np
 import pandas as pd
 
 from sklearn.model_selection import train_test_split
-
 import xgboost as xgb
 
 
@@ -196,12 +194,17 @@ def fit(train_X, train_Y, test_X, test_Y):
     # used num_class only for classification (e.g. a level of availability)
     # param = {'objective': 'multi:softmax'}
     # param['num_class'] = train_Y.nunique()
+    training_progress = dict()
     xg_train = xgb.DMatrix(train_X, label=train_Y)
     xg_test = xgb.DMatrix(test_X, label=test_Y)
     watchlist = [(xg_train, 'train'), (xg_test, 'test')]
     num_round = 25
-    bst = xgb.train(param, xg_train, num_round, watchlist)
-    return bst
+    bst = xgb.train(params=param,
+                    dtrain=xg_train,
+                    num_boost_round=num_round,
+                    evals=watchlist,
+                    evals_result=training_progress)
+    return bst, training_progress
 
 
 def prediction(bst, test_X, test_Y):
@@ -219,7 +222,7 @@ def error_rate(bst, test_X, test_Y):
 
 
 if __name__ == '__main__':
-    DATAFILE = "./data/lyon.csv"
+    DATAFILE = "../data/lyon.csv"
     THRESHOLD = 3
 
     raw = datareader(DATAFILE)
@@ -265,4 +268,4 @@ if __name__ == '__main__':
     test['error'] = pred - test_Y
     test['relative_error'] = 100. * np.abs(pred - test_Y) / test_Y
     test['quad_error'] = (pred - test_Y)**2
-    test.to_csv("prediction-freq-{}-{}.csv".format(freq, predict_date))
+    test.to_csv("../results/prediction-freq-{}-{}.csv".format(freq, predict_date))
