@@ -4,8 +4,9 @@
 [[http://oslandia.com/][Oslandia]] team is involved in a constant effort in geospatial data gathering and
 analysis. By taking advantage of the recent trend in public open data
 releasing, and after reading an inspiring work done by James Lawlor for [[https://towardsdatascience.com/usage-patterns-of-dublin-bikes-stations-484bdd9c5b9e][Dublin
-data]], we decided to evaluate the situation in our own living places. Here come
-the open data portals for both cities: [[https://data.grandlyon.com/][Lyon]] and [[http://opendata.bordeaux.fr/][Bordeaux]].
+data]] we decided to evaluate the situation in our own living places. Here comes
+the open data portals for both cities: [[https://data.grandlyon.com/][Lyon]] and [[http://opendata.bordeaux.fr/][Bordeaux]]. You may also find the
+Python code for our [[https://github.com/Oslandia/open-data-bikes-analysis][open data bike analysis]] on Github.
 
 * What is the data looking like?
 
@@ -97,9 +98,10 @@ cities:
 
 * Understand a city from its bike sharing stations
 
-This can be considered quite good for a beginning, however what about the geographical part of
-the data? [[https://github.com/python-visualization/folium][Folium]] (see doc [[https://folium.readthedocs.io/en/latest/][here]]), a Python library based on [[http://leafletjs.com][Leaflet.js]], will
-allow us to draw interactive maps with our newly designed clusters.
+This can be considered quite good for a beginning, however what about the
+geographical part of the data? [[https://github.com/python-visualization/folium][Folium]] (see doc [[https://folium.readthedocs.io/en/latest/][here]]), a Python library based on
+[[http://leafletjs.com][Leaflet.js]], will allow us to draw interactive maps with our newly designed
+clusters.
 
 #+CAPTION: Bike sharing stations in Bordeaux
 #+NAME: fig:bordeaux_map_4_clusters
@@ -132,6 +134,8 @@ riverbanks nearby), in partying places.
 In a next article, we will provide an extension of this work by predicting bike
 availability at stations.
 
-If you are interested in continuing the discussion with us on this matter, or on
-another data-related topic, do not hesitate to mail us ( infos+data@oslandia.com ) ! You may also find the
-Python code for this project on [[https://github.com/Oslandia/open-data-bikes-analysis][Github]].
+If you are interested in continuing the discussion with us on this matter, or
+on another data-related topic, do not hesitate to mail us (
+[[infos+data@oslandia.com][infos+data@oslandia.com]] ) ! If you are interesting in reading about another
+clustering application, you can also find a previous OpenStreetMap-related work
+done with [[http://oslandia.com/en/2017/08/06/osm-user-classification-lets-use-machine-learning/][KMeans]] on our blog (see [[https://github.com/Oslandia/osm-data-classification][Github project here]]).

@@ -99,8 +99,8 @@ The following map shows such a quantity, for all stations in Lyon:
 #+NAME: fig:lyon_ground_truth_availability
 [[../image/lyon_groundtruth.png]]
 
-We have to compare it with the prediction provided by XGBoost model below. With
-such a color scale, we can say that the prediction looks good:
+We have to compare it with the prediction provided by the XGBoost model
+below. With such a color scale, we can say that the prediction looks good:
 
 #+CAPTION: Predictions on shared bike availability, per station (red: empty station, blue: full station)
 #+NAME: fig:lyon_predicted_availability
