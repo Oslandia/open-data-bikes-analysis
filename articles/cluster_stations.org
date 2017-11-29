@@ -6,7 +6,7 @@ analysis. By taking advantage of the recent trend in public open data
 releasing, and after reading an inspiring work done by James Lawlor for [[https://towardsdatascience.com/usage-patterns-of-dublin-bikes-stations-484bdd9c5b9e][Dublin
 data]] we decided to evaluate the situation in our own living places. Here comes
 the open data portals for both cities: [[https://data.grandlyon.com/][Lyon]] and [[http://opendata.bordeaux.fr/][Bordeaux]]. You may also find the
-Python code for our [[https://github.com/Oslandia/open-data-bikes-analysis][open data bike analysis]] on Github.
+Python code and the notebooks for our [[https://github.com/Oslandia/open-data-bikes-analysis][open data bike analysis]] on Github.
 
 * What is the data looking like?
 
