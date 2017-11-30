@@ -5,8 +5,8 @@
 analysis. By taking advantage of the recent trend in public open data
 releasing, and after reading an inspiring work done by James Lawlor for [[https://towardsdatascience.com/usage-patterns-of-dublin-bikes-stations-484bdd9c5b9e][Dublin
 data]] we decided to evaluate the situation in our own living places. Here comes
-the open data portals for both cities: [[https://data.grandlyon.com/][Lyon]] and [[http://opendata.bordeaux.fr/][Bordeaux]]. You may also find the
-Python code and the notebooks for our [[https://github.com/Oslandia/open-data-bikes-analysis][open data bike analysis]] on Github.
+the open data portals for both cities: [[https://data.grandlyon.com/][Lyon]] and [[http://opendata.bordeaux.fr/][Bordeaux]]. The Python code and
+the notebooks for our [[https://github.com/Oslandia/open-data-bikes-analysis][open data bike analysis]] are available on Github.
 
 * What is the data looking like?
 
@@ -14,7 +14,7 @@ Both data set have been gathered with a cron plugged onto open data portals to
 get data every 5 minutes. The data of this study are between the 8th of July and
 the 26th of September, /i.e./ more than 11 weeks of data.
 
-It is important to consider there is no real standardization relatively to bike
+It is important to consider there is no real standardization related to bike
 sharing open data sets: each city provides its own data set with its own
 features.
 
@@ -67,15 +67,15 @@ only need station ids, timestamps and number of available bikes!
 In order to identify groups of similar bike sharing stations in each of these
 cities, we have run a simple clustering approach on availability data. To keep
 the data set as simple as possible and work on comparable situations, we have
-agregated the measurement to one-hour periods, and dropped the data gathered
+aggregated the measurement to one-hour periods, and dropped the data gathered
 during week-end days. We consequently have dataframes of =N= rows and 24
-columns (a column being the bike percentage of availability at every stations,
+columns (a column being the bike percentage of availability at every station,
 for a given hour of the day).
 
-We have worked with four clusters, regarding elbow method as well as cluster
+We have worked with four clusters, considering elbow method as well as cluster
 significance.
 
-As shown by figures below, the global pattern seems comparable between both
+As shown in the figures below, the global pattern seems comparable between both
 cities:
 + a first cluster (red) groups stations where bikes have high availability
   rates during the night. They probably refer to residential neighborhoods.
@@ -117,17 +117,18 @@ fit the neighborhood division.
 #+NAME: fig:lyon_map_4_clusters
 [[../image/lyon-4-clusters.png]]
 
-On the second hand, results in Lyon are far more significant, from a
-geospatial point of view. Residential stations are mainly in Villeurbanne (east of Lyon) 
-and in the 8th district (south east). We get a high concentration of
-blue stations (diurnal activities) in the 3rd district (Part-Dieu business
-area), or near La Doua campus (north). It is interesting to point out
-some blue points in the far south east of the city: they correspond to the largest
-hospital in Lyon. If we consider purple stations (evening activities), almost all
-the points are located in the city center (Croix-Rousse, Lyon peninsula and
-riverbanks nearby), in partying places.
+On the second hand, results in Lyon are far more significant, from a geospatial
+point of view. Residential stations are mainly in Villeurbanne (east of Lyon)
+and in the 8th district (south east). We get a high concentration of blue
+stations (diurnal activities) in the 3rd district (Part-Dieu business area), or
+near La Doua campus (north). It is interesting to note the blue points in the
+far south east of the city: they correspond to the largest hospital in Lyon. If
+we consider purple stations (evening activities), almost all the points are
+located in the city center (Croix-Rousse, Lyon peninsula and riverbanks
+nearby), in partying places.
 
-(... With all these elements, the true question is: where is Oslandia's office located in Lyon ?)
+(... With all these elements, the true question is: where is Oslandia's office
+located in Lyon ?)
 
 
 
