@@ -41,11 +41,11 @@ profiles. Note the analysis only keep job days.
 
 ### Bordeaux Map Clustering
 
-![Bordeaux-Map](./images/bordeaux-map-clustering.jpg)
+![Bordeaux-Map](./images/bordeaux-4-clusters.png)
 
 ### Lyon Map Clustering
 
-![Lyon-Map](./images/lyon-map-clustering.jpg)
+![Lyon-Map](./images/lyon-4-clusters.png)
 
 ## Predict (draft)
 
