@@ -1,8 +1,8 @@
-#+TITLE: Predict bike availability at bike sharing stations
+#+TITLE: Predict Bike Availability at Bike Sharing Stations
 #+AUTHOR: Damien Garaud <damien.garaud@oslandia.com>, Raphaël Delhome <raphael.delhome@oslandia.com>
 
-In a [[http://oslandia.com/en/?p=3942&preview=true][previous article]], we described the clustering of bike sharing stations in
-two french cities, /i.e./ Bordeaux and Lyon. We saw that geospatial clustering
+In a [[http://oslandia.com/en/2017/11/29/cluster-bike-sharing-stations-around-french-cities/][previous article]], we described the clustering of bike sharing stations in
+two French cities, /i.e./ Bordeaux and Lyon. We saw that geospatial clustering
 is interesting to understand city organization. Results were especially
 impressive for the Lyon data set.
 
@@ -12,7 +12,7 @@ attempting to predict the bike availability rates for each station in Lyon.
 * Collecting the data
 
 As in the previous article we can use almost two months and a half of recordings at
-every bike sharing stations in Lyon, between 17/07/08 and 17/09/26.
+every bike sharing stations in Lyon, between 2017/07/08 and 2017/09/26.
 
 By simplifying our data, we can see that we get timestamped bike availability
 data at each station.
@@ -68,8 +68,8 @@ bike at his preferred station, or should he walk to the next one? Or maybe
 should he look for an alternative transportation mode, as there will be no bike in
 the neighborhood nearby?
 
-Let's use two weeks of data for training (/i.e./ from 11/07/11 to 25/07/11) so as
-to predict one day of availability on the network (/i.e./ 26/07/11). The
+Let's use two weeks of data for training (/i.e./ from 2017/07/11 to 2017/07/25) so as
+to predict one day of availability on the network (/i.e./ 2017/07/26). The
 explicative variables will be the station id, the timestamp information (day
 id, hours, minutes) and the station-related features (numbers of available
 bikes and stands).
@@ -80,12 +80,20 @@ regression processes. Here, we are in the second case, as we want to estimate
 the value of a quantitative variable (the probability of finding an available
 bike at a given station, at a given hour).
 
+As the [[https://en.wikipedia.org/wiki/AdaBoost][Ada Boost]] model, XGBoost is a /boosting/ model which involves training
+multiple models in sequence in which the error function used to train a
+particular model depends on the performance of the previous models.
+
+#+CAPTION: XGBoost model example. Figure from http://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf
+#+NAME: fig:xgboost_model
+[[../images/gbt_exemple.jpg]]
+
 Our model learns quite fast, and after 25 iterations, the training process
 converges around a satisfying error value (around 0.095).
 
 #+CAPTION: XGBoost training curves
 #+NAME: fig:lyon_prediction_training_curves
-[[../image/lyon_prediction_training_curves.png]]
+[[../images/lyon_prediction_training_curves.png]]
 
 * Mapping the predictions
 
@@ -97,14 +105,14 @@ The following map shows such a quantity, for all stations in Lyon:
 
 #+CAPTION: True shared bike availability, per station (red: empty station, blue: full station)
 #+NAME: fig:lyon_ground_truth_availability
-[[../image/lyon_groundtruth.png]]
+[[../images/lyon_groundtruth.png]]
 
 We have to compare it with the prediction provided by the XGBoost model
 below. With such a color scale, we can say that the prediction looks good:
 
 #+CAPTION: Predictions on shared bike availability, per station (red: empty station, blue: full station)
 #+NAME: fig:lyon_predicted_availability
-[[../image/lyon_prediction.png]]
+[[../images/lyon_prediction.png]]
 
 If we focus on the prediction error, we may highlight bike stations where the
 model failed to give an accurate prediction:
