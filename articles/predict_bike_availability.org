@@ -82,7 +82,9 @@ bike at a given station, at a given hour).
 
 As the [[https://en.wikipedia.org/wiki/AdaBoost][Ada Boost]] model, XGBoost is a /boosting/ model which involves training
 multiple models in sequence in which the error function used to train a
-particular model depends on the performance of the previous models.
+particular model depends on the performance of the previous models. Boosting
+algorithms are one of the most widely used algorithm in data science
+competitions.
 
 #+CAPTION: XGBoost model example. Figure from http://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf
 #+NAME: fig:xgboost_model
