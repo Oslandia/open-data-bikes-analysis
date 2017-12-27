@@ -80,13 +80,12 @@ regression processes. Here, we are in the second case, as we want to estimate
 the value of a quantitative variable (the probability of finding an available
 bike at a given station, at a given hour).
 
-As the [[https://en.wikipedia.org/wiki/AdaBoost][Ada Boost]] model, XGBoost is a /boosting/ model which involves training
-multiple models in sequence in which the error function used to train a
-particular model depends on the performance of the previous models. Boosting
-algorithms are one of the most widely used algorithm in data science
-competitions.
+As the [[https://en.wikipedia.org/wiki/AdaBoost][Ada Boost]] model, XGBoost is a /boosted tree/ model which involves a
+sequence of smaller models (decision trees) and where each submodel training
+error function depends on the previous model results. Boosting algorithms are
+one of the most widely used algorithm in data science competitions.
 
-#+CAPTION: XGBoost model example. Figure from http://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf
+#+CAPTION: XGBoost model example (from [[http://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf][Tianqi Chen]]): two decision trees are used as submodels to answer the question: "does the person like computer games?"
 #+NAME: fig:xgboost_model
 [[../images/gbt_exemple.jpg]]
 
