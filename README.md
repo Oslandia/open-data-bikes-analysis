@@ -9,12 +9,12 @@ Use the Python 3 programming language in Jupyter notebooks and the following
 libraries: pandas, numpy, seaborn, matplotlib, scikit-learn, xgboost.
 
 See the [requirements.txt](./requirements.txt) file for the dependencies. If you
-use conda and the conda environnement, you can just do: `conda env create -f
+use conda and the conda environment, you can just do: `conda env create -f
 environment.yml` and the `source activate bikes`.
 
 ## Clustering
 
-Higly inspired by the
+Highly inspired by the
 [Usage Patterns Of Dublin Bikes Stations](https://medium.com/towards-data-science/usage-patterns-of-dublin-bikes-stations-484bdd9c5b9e)
 article and his great [notebook](https://github.com/jameslawlor/dublin-bikes-timeseries-analysis/blob/master/dublin-bikes-time-series-clustering-and-mapping.ipynb).
 
